@@ -17,7 +17,7 @@ if [ "$?" == "0" ]; then
 	sleep 1
 	echo "Starting main program..."
 	sleep 3
-	python3 -u ./main.py
+	python3 -u main.py
 else
 	echo "Cannot reach canvas.sydney.edu.au";
 	echo "Please check Internet connection."
