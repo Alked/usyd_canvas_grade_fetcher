@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.append(os.path.abspath('..'))
 from modules.clslib import *
 import getpass
 
@@ -152,6 +155,7 @@ while True:
                         show_null = True
                         show_full = True
                         show_individual = False
+                        g = False
                         if 'f' in flags:
                             show_full = False
                         elif 'n' in flags:

@@ -9,7 +9,7 @@ else
 fi
 
 echo 'Internet connection under testing...'
-ping -c5 canvas.sydney.edu.au &> /dev/null
+ping -c5 13.237.119.117:443 &> /dev/null
 if [ "$?" == "0" ]; then
 	echo "Connection seems valid";
 	echo "Starting main program";
