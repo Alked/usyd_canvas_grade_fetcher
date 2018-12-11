@@ -160,7 +160,9 @@ while True:
                             show_grade = False
                         elif 'i' in flags:
                             show_individual = True
-                        course_instance.display_grades(credentials[0], show_grade, show_null, show_full, show_individual)
+                        elif 'g' in flags:
+                            g = True
+                        course_instance.display_grades(credentials[0], show_grade, show_null, show_full, show_individual, g)
                         continue
 
                     elif len(cmd_ls) == 2:

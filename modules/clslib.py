@@ -1,5 +1,6 @@
 from modules.reqlib import *
 import json
+from modules.THE_GAME import *
 
 
 class Assignment:
@@ -67,7 +68,9 @@ class Course:
                         break
         self.hasAssignments = True
 
-    def display_grades(self, usr_name, show_grade=True, show_null=True, show_full=True, show_individual=False):
+    def display_grades(self, usr_name, show_grade=True, show_null=True, show_full=True, show_individual=False, g=False):
+        if g:
+            show_individual = True
         if show_individual:
             tmp_aid = 0
             tmp_aid_to_ass_id_ls = []
@@ -77,6 +80,28 @@ class Course:
                 print(tmp_aid, '\t', end='')
                 print(assignment.assignment_name)
 
+            if g:
+                game_stat = 1
+                while game_stat:
+                    print("Pick an assignment")
+                    try:
+                        usr_cmd = input(usr_name + ' | ' + self.name + ' > ')
+                        current_assignment_id = None
+                        display_ass_id = int(usr_cmd)
+                        for pair in tmp_aid_to_ass_id_ls:  # Get current assignment ID
+                            if pair[0] == display_ass_id:
+                                current_assignment_id = pair[1]
+                                break
+                        if current_assignment_id is None:
+                            print('Please check Assignment ID')
+                            continue
+                        for assignment in self.assignments:
+                            if assignment.assignment_id == current_assignment_id:
+                                game_stat = the_game(assignment.mark, assignment.full_mark)
+                                break
+                    except ValueError:
+                        print('Please check Assignment ID')
+
             print('Enter \"quit\" to quit i mode')
             while True:
                 usr_cmd = input(usr_name + ' | ' + self.name + ' > ')
@@ -85,7 +110,7 @@ class Course:
                 try:
                     current_assignment_id = None
                     display_ass_id = int(usr_cmd)
-                    for pair in tmp_aid_to_ass_id_ls:  # Get current course ID
+                    for pair in tmp_aid_to_ass_id_ls:  # Get current assignment ID
                         if pair[0] == display_ass_id:
                             current_assignment_id = pair[1]
                             break
